@@ -1,0 +1,1 @@
+ D:\\Graduation_Project\\rakna\\.dart_tool\\flutter_build\\64ad09509ddf785ce5b5e8f5c1facb1b\\native_assets.yaml: 

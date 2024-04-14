@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "581632559212",
+    "firebase_url": "https://rakna-ea203-default-rtdb.firebaseio.com",
+    "project_id": "rakna-ea203",
+    "storage_bucket": "rakna-ea203.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581632559212:android:e7f50940af37433a803049",
+        "android_client_info": {
+          "package_name": "com.example.rakna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581632559212-kg6a48gv9o1tenmiaut18c41anh6vljr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rakna",
+            "certificate_hash": "000a55e604d30475299b2b376ecd5a15a4fdf4a3"
+          }
+        },
+        {
+          "client_id": "581632559212-ppeslmvf5gs6t6v1jfpcgcto25sssb4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnQ_fXaI2WxwOwGs7ZTsxWHzUgm6EfDow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581632559212-ppeslmvf5gs6t6v1jfpcgcto25sssb4t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "581632559212-44m6p4r7hv4kgei5ftasqgmsq4avoebn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.raknaGraduationProject.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581632559212:android:c12f935cbebfef20803049",
+        "android_client_info": {
+          "package_name": "com.example.rakna_graduation_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581632559212-ppeslmvf5gs6t6v1jfpcgcto25sssb4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnQ_fXaI2WxwOwGs7ZTsxWHzUgm6EfDow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581632559212-ppeslmvf5gs6t6v1jfpcgcto25sssb4t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "581632559212-44m6p4r7hv4kgei5ftasqgmsq4avoebn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.raknaGraduationProject.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

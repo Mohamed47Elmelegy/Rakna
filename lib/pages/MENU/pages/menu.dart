@@ -26,7 +26,7 @@ class _MenuDrowerState extends State<MenuDrower> {
   }
 
   Future<void> retrieveUserData() async {
-    final storage = FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     String? storedUsername = await storage.read(key: "name");
 
     setState(() {

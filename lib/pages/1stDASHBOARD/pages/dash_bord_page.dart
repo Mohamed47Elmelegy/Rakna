@@ -20,88 +20,89 @@ class DashBordPage extends StatelessWidget {
       body: Column(
         children: [
           Container(
-              width: Constants.mediaQuery.width,
-              color: ApplicationThemeManager.prymaryColor,
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      left: 22,
-                      bottom: 10,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Book your place !',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 22,
-                            color: Color(0xffF8A00E),
-                          ),
-                          textAlign: TextAlign.start,
+            width: Constants.mediaQuery.width,
+            color: ApplicationThemeManager.prymaryColor,
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(
+                    left: 22,
+                    bottom: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Book your place !',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 22,
+                          color: Color(0xffF8A00E),
                         ),
-                      ],
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(
+                      30,
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(
-                        30,
+                  width: Constants.mediaQuery.width * 0.88,
+                  height: Constants.mediaQuery.height * 0.28,
+                  child: Image.asset(
+                    'assets/images/frame425.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                const Gap(20),
+                Container(
+                  width: Constants.mediaQuery.width * 1,
+                  height: Constants.mediaQuery.height * 0.4,
+                  decoration: const BoxDecoration(
+                    color: Color(0xff5B5B5B),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(
+                        60,
+                      ),
+                      topRight: Radius.circular(
+                        60,
                       ),
                     ),
-                    width: Constants.mediaQuery.width * 0.88,
-                    height: Constants.mediaQuery.height * 0.28,
-                    child: Image.asset(
-                      'assets/images/frame425.png',
-                      fit: BoxFit.fill,
-                    ),
                   ),
-                  const Gap(20),
-                  Container(
-                    width: Constants.mediaQuery.width * 1,
-                    height: Constants.mediaQuery.height * 0.4,
-                    decoration: const BoxDecoration(
-                      color: Color(0xff5B5B5B),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(
-                          60,
-                        ),
-                        topRight: Radius.circular(
-                          60,
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              /*freeSlots.toString()*/ "4", //Free Slots from firebase
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 28),
+                            ),
+                            Gap(10),
+                            Text(
+                              "Free Slot",
+                              style: TextStyle(
+                                  fontSize: 28, color: Color(0xffF8A00E)),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                    child: Column(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                /*freeSlots.toString()*/ "4", //Free Slots from firebase
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 28),
-                              ),
-                              Gap(10),
-                              Text(
-                                "Free Slot",
-                                style: TextStyle(
-                                    fontSize: 28, color: Color(0xffF8A00E)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 500,
-                          child: Image.asset("assets/images/Group 36681.png"),
-                        ),
-                      ],
-                    ),
+                      SizedBox(
+                        width: 500,
+                        child: Image.asset("assets/images/Group 36681.png"),
+                      ),
+                    ],
                   ),
-                ],
-              )),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:rakna_graduation_project/config/widgets/appbar.dart';
 import 'package:rakna_graduation_project/config/widgets/custom_login_sginup_button.dart';
 import 'package:rakna_graduation_project/config/widgets/custom_text_field.dart';
 import 'package:rakna_graduation_project/pages/MENU/pages/menu.dart';
@@ -28,11 +29,11 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(100),
-        child: CustomAppBar(),
+      appBar: const MyAppBar(
+        app_bar_name: "Profile",
+        center_Title: false,
+        font_Size: 20,
       ),
-      drawer: const MenuDrower(),
       body: Form(
         key: formKey,
         autovalidateMode: autovalidateMode,

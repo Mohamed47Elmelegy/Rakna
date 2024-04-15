@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rakna_graduation_project/config/widgets/custom_text_field.dart';
+import 'package:rakna_graduation_project/layout_view.dart';
 import 'package:rakna_graduation_project/pages/1stDASHBOARD/pages/dash_bord_page.dart';
 import 'package:rakna_graduation_project/pages/ForgotPassword/pages/forgot_password.dart';
 import 'package:rakna_graduation_project/pages/SignIn/widgets/constants.dart';
@@ -186,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                               // Email is verified, navigate to dashboard
                               Navigator.pushNamedAndRemoveUntil(
                                 context,
-                                DashBordPage.routName,
+                                LayoutView.routName,
                                 (route) => false,
                               );
                             } else {

@@ -11,6 +11,7 @@ import 'package:rakna_graduation_project/pages/Datails/pages/qr_data.dart';
 import 'package:rakna_graduation_project/pages/ForgotPassword/pages/forgot_password.dart';
 import 'package:rakna_graduation_project/pages/History/pages/history.dart';
 import 'package:rakna_graduation_project/pages/MENU/pages/menu.dart';
+import 'package:rakna_graduation_project/pages/PrivacyPolicey/pages/privacy_policey.dart';
 import 'package:rakna_graduation_project/pages/Report/pages/report_page.dart';
 import 'package:rakna_graduation_project/pages/SignIn/pages/login_page.dart';
 import 'package:rakna_graduation_project/pages/SignUp/pages/signup_page.dart';
@@ -76,8 +77,8 @@ class _RaknaState extends State<Rakna> {
       routes: {
         Splash_Screen.routName: (context) => const Splash_Screen(),
         LayoutView.routName: (context) => const LayoutView(),
-        QRPage.routName: (context) => const QRPage(),
-        ReservePage.routName: (context) => const ReservePage(),
+        Tickets.routName: (context) => const Tickets(),
+        Reservation.routName: (context) => const Reservation(),
         ProfilePage.routName: (context) => const ProfilePage(),
         HistoryPage.routName: (context) => const HistoryPage(),
         MenuDrower.routName: (context) => const MenuDrower(),
@@ -87,6 +88,7 @@ class _RaknaState extends State<Rakna> {
         SginUp.routName: (context) => const SginUp(),
         Splash_Screen.routName: (context) => const Splash_Screen(),
         DashBordPage.routName: (context) => const DashBordPage(),
+        PrivacyPoliceyPage.routName: (context) => const PrivacyPoliceyPage(),
       },
     );
   }

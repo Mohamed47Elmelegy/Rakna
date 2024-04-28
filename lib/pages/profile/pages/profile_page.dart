@@ -1,12 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:rakna_graduation_project/config/widgets/appbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:rakna_graduation_project/config/widgets/constants.dart';
 import 'package:rakna_graduation_project/config/widgets/custom_login_sginup_button.dart';
 import 'package:rakna_graduation_project/config/widgets/custom_text_field.dart';
-import 'package:rakna_graduation_project/pages/MENU/pages/menu.dart';
-import 'package:rakna_graduation_project/pages/MENU/widgets/custom_appbar.dart';
-import 'package:rakna_graduation_project/pages/SignIn/widgets/constants.dart';
-import 'package:rakna_graduation_project/pages/profile/pages/add_photo.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -21,19 +21,31 @@ class _ProfilePageState extends State<ProfilePage> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   final _items = ['male', 'female', 'Gender'];
+  Uint8List? _image;
+  File? selectedImage;
+  String? imageUrl;
 
-  //firebase firestore
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  void _saveDataToFirebase() async {
+    try {
+      await FirebaseFirestore.instance.collection('profiles').add({
+        'name': name,
+        'phoneNumber': phoneNumber,
+        'email': email,
+        'platesNumber': platesNumber,
+        'gender': _dropdownValue,
+      });
+      // Data saved successfully
+      print('Data saved to Firebase');
+    } catch (e) {
+      // Error saving data
+      print('Error saving data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      appBar: const MyAppBar(
-        app_bar_name: "Profile",
-        center_Title: false,
-        font_Size: 20,
-      ),
       body: Form(
         key: formKey,
         autovalidateMode: autovalidateMode,
@@ -41,10 +53,38 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: ListView(
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 150,
-                width: 250,
-                child: Add_photo(),
+                width: 150,
+                child: Center(
+                  child: Stack(
+                    children: [
+                      _image != null
+                          ? CircleAvatar(
+                              radius: 250,
+                              backgroundImage: MemoryImage(_image!),
+                            )
+                          : const CircleAvatar(
+                              radius: 250,
+                              backgroundImage:
+                                  AssetImage("assets/icons/download.png"),
+                            ),
+                      Positioned(
+                        bottom: -10,
+                        right: 119,
+                        child: IconButton(
+                          onPressed: () {
+                            showImagePickerOption(context);
+                          },
+                          icon: const Icon(
+                            Icons.add_a_photo,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,9 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 25,
-              ),
+              const SizedBox(height: 25),
               Column(
                 children: [
                   Container(
@@ -168,34 +206,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 18,
-                  ),
+                  const SizedBox(height: 18),
                   CustomButton(
                     text: 'Confirm',
-                    isEnabled: false,
+                    isEnabled: true,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
-                        //firebase firestore
-                        String userId = "User_Id";
-                        _firestore.collection('users').doc(userId).set({
-                          'name': name,
-                          'phoneNumber': phoneNumber,
-                          'email': email,
-                          'platesNumber': platesNumber,
-                          'gender': _dropdownValue
-                        }, SetOptions(merge: true)).then((_) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Profile Updated!')));
-                        }).catchError((error) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content:
-                                  Text('Failed to update profile: $error')));
-                        });
                         setState(() {
                           autovalidateMode = AutovalidateMode.disabled;
                         });
+                        _saveDataToFirebase();
                       } else {
                         setState(() {
                           autovalidateMode = AutovalidateMode.always;
@@ -210,5 +231,110 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
+  }
+
+  void showImagePickerOption(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Colors.blue[100],
+      context: context,
+      builder: (builder) {
+        return Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 5,
+            child: Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      _pickImageFromGallery();
+                    },
+                    child: const SizedBox(
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.image,
+                            size: 70,
+                          ),
+                          Text("Gallery")
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      _pickImageFromCamera();
+                    },
+                    child: const SizedBox(
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.camera_alt,
+                            size: 70,
+                          ),
+                          Text("Camera")
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future _pickImageFromGallery() async {
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage == null) return;
+
+    selectedImage = File(pickedImage.path);
+    _image = await selectedImage!.readAsBytes();
+
+    uploadImageToFirebaseStorage();
+  }
+
+  Future _pickImageFromCamera() async {
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (pickedImage == null) return;
+
+    selectedImage = File(pickedImage.path);
+    _image = await selectedImage!.readAsBytes();
+
+    uploadImageToFirebaseStorage();
+  }
+
+  Future<void> uploadImageToFirebaseStorage() async {
+    if (selectedImage == null) return;
+
+    try {
+      // Upload image to Firebase Storage
+      final storageRef =
+          FirebaseStorage.instance.ref().child('images/${DateTime.now()}.png');
+      await storageRef.putFile(selectedImage!);
+
+      // Get download URL
+      imageUrl = await storageRef.getDownloadURL();
+
+      // Save download URL to Firestore
+      await FirebaseFirestore.instance.collection('images').add({
+        'url': imageUrl,
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+
+      setState(() {
+        // Update UI with the new image
+        // (if you want to display it after upload)
+      });
+    } catch (e) {
+      print('Failed to upload image: $e');
+    }
   }
 }

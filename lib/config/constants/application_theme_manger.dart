@@ -5,21 +5,7 @@ class ApplicationThemeManager {
   static ThemeData applicationThemeData = ThemeData(
     primaryColor: prymaryColor,
     scaffoldBackgroundColor: Colors.transparent,
-    //AppBarrTheme  Style
-    // appBarTheme: const AppBarTheme(
-    //   backgroundColor: prymaryColor,
-    //   shape: RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.only(
-    //       bottomLeft: Radius.circular(35),
-    //       bottomRight: Radius.circular(35),
-    //     ),
-    //   ), //IconTheme
-    //   iconTheme: IconThemeData(
-    //     color: Color(0xffF8A00E),
-    //     size: 35,
-    //   ),
-    //   centerTitle: true,
-    // ),
+
     iconTheme: const IconThemeData(
       size: 30,
     ),

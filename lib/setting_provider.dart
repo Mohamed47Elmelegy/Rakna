@@ -7,8 +7,8 @@ import 'package:rakna_graduation_project/pages/reserve/pages/reservation_parking
 class SettingProvider extends ChangeNotifier {
   List<Widget> screens = [
     const DashBordPage(),
-    const QRPage(),
-    const ReservePage(),
+    const Tickets(),
+    const Reservation(),
     const ProfilePage()
   ];
   int currentIndex = 0;
